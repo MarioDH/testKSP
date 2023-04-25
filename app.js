@@ -17,10 +17,18 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use( express.static('public'));
 app.use('/empleado', empleado);
 
-dbConnect();
+app.get('*', function(req, res) {
+    //res.send('Recurso no encontrado o no Autorizado');
+    return res.status(404).send({
+        message: '404 Recurso no encontrado o no Autorizado'
+    });
 
+});
+
+dbConnect();
 const port = process.env.PORT ;
 
 /**

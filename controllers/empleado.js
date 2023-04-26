@@ -45,9 +45,23 @@ const empleadoDelete = async (request, response = response) => {
     }
 }
 
+const empleadoGetID = async (request, response = response) => {
+    const { id } = request.params;
+    try {
+      const user = await empleadoModel.findById(id);
+      if (user) {
+        response.json(user);
+      } else {
+        response.status(404).json({ message: 'Empleado no encontrado' });
+      }
+    } catch (error) {
+        response.status(500).json({ message: error.message });
+    }
+};
+
 /* async (request, response) => {
   const empleado = ['test', 'put']
   response.send(empleado);
 }; */
 
-module.exports = { empleadoGet, empleadoPost, empleadoPut, empleadoDelete }
+module.exports = { empleadoGet, empleadoPost, empleadoPut, empleadoDelete , empleadoGetID}

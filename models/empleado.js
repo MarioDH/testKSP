@@ -7,7 +7,7 @@ const empleadoSchema = new mongoose.Schema({
     },
     Foto: {
         type: String,
-        default: 0,
+        required: true,
     },
     Nombre: {
         type: String,
